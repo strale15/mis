@@ -1,0 +1,28 @@
+.center {
+    border: 1px solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+  }
+
+.pismo {
+ position: relative;
+  top: 0;
+  left: 0;
+  height: 80vh;
+  width: 60vw;
+  z-index: 1; /* Ensure the pismo image is above the circle mask */
+}
+
+.text {
+    position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 80vh;
+  width: 60vw;
+  z-index: 2; /* Ensure the text image is above the circle mask */
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 10%, rgba(0, 0, 0, 0) 15%);
+    mask-image: radial-gradient(circle at 50% 50%, black 10%, rgba(0, 0, 0, 0) 15%);
+}
