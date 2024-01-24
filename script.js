@@ -19,6 +19,21 @@ document.addEventListener("DOMContentLoaded", function () {
         //textImage.style.maskImage = 'radial-gradient(circle at 50% 50%, red 0%, rgba(255, 0, 0, 0) 0%)';
     });
 
+    document.addEventListener('touchstart', function (event) {
+        // Prevent default behavior to avoid double-tap zooming on mobile devices
+        event.preventDefault();
+    
+        // Call the checkAndUpdatePosition function on touch move
+        mouseDown = true;
+        // Your other touchstart code here
+    });
+    
+    document.addEventListener('touchend', function () {
+        // Remove the event listener for touch move when the touch is released
+        mouseDown = false;
+        // Your other touchend code here
+    });
+
 
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('touchmove', handleTouchMove);
