@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
+    var mouseDown = false;
+    var textImage = document.querySelector('.text');
+
+    document.addEventListener('mousedown', function (event) {
+        // Check if the left mouse button is pressed
+        if (event.button === 0) {
+            // Call the checkAndUpdatePosition function on mouse move
+            mouseDown = true;
+            //textImage.style.webkitMaskImage = 'radial-gradient(circle at 50% 50%, red 10%, rgba(255, 0, 0, 0) 15%)';
+            //textImage.style.maskImage = 'radial-gradient(circle at 50% 50%, red 10%, rgba(255, 0, 0, 0) 15%)';
+        }
+    });
+
+    document.addEventListener('mouseup', function () {
+        // Remove the event listener for mouse move when the mouse button is released
+        mouseDown = false;
+        //textImage.style.webkitMaskImage = 'radial-gradient(circle at 50% 50%, red 0%, rgba(255, 0, 0, 0) 0%)';
+        //textImage.style.maskImage = 'radial-gradient(circle at 50% 50%, red 0%, rgba(255, 0, 0, 0) 0%)';
+    });
+
+
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('touchmove', handleTouchMove);
 
@@ -9,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         y: rect.top + rect.height / 2
     };
 
-    var textImage = document.querySelector('.text');
+    
 
     // Function to update the radial gradient position
     function updateRadialGradientPosition(x, y) {
@@ -54,12 +75,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function checkAndUpdatePosition(x, y) {
         // Check if the coordinates are inside the .center div
         if (
+            mouseDown &&
             x >= rect.left &&
             x <= rect.right &&
             y >= rect.top &&
             y <= rect.bottom
         ) {
+            textImage.style.webkitMaskImage = 'radial-gradient(circle at 50% 50%, red 10%, rgba(255, 0, 0, 0) 15%)';
+            textImage.style.maskImage = 'radial-gradient(circle at 50% 50%, red 10%, rgba(255, 0, 0, 0) 15%)';
             updateRadialGradientPosition(x, y);
+        } else {
+            textImage.style.webkitMaskImage = 'radial-gradient(circle at 50% 50%, red 0%, rgba(255, 0, 0, 0) 0%)';
+            textImage.style.maskImage = 'radial-gradient(circle at 50% 50%, red 0%, rgba(255, 0, 0, 0) 0%)';
         }
     }
 });
